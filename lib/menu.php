@@ -41,7 +41,7 @@ class Menu{
 
 	/**
 	 * crée le menu à afficher
-	 * @param $composantActif (item s�lectionné)
+	 * @param $composantActif (item sélectionné)
 	 * @param $nomMenu (nom variable transmise)
 	 */
 	public function creerMenu($composantActif,$nomMenu){
