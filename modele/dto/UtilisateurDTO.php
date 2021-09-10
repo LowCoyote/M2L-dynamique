@@ -3,6 +3,7 @@
 
 class UtilisateurDTO
 {
+    //
     private $idUser;
     private $nom;
     private $prenom;
@@ -27,7 +28,8 @@ class UtilisateurDTO
      * @param $idLigue
      * @param $idClub
      */
-    public function __construct($idUser, $nom, $prenom, $login, $mdp, $statut, $typeUser, $idFonct, $idLigue, $idClub)
+
+   /* public function __construct($idUser, $nom, $prenom, $login, $mdp, $statut, $typeUser, $idFonct, $idLigue, $idClub)
     {
         $this->idUser = $idUser;
         $this->nom = $nom;
@@ -39,6 +41,11 @@ class UtilisateurDTO
         $this->idFonct = $idFonct;
         $this->idLigue = $idLigue;
         $this->idClub = $idClub;
+    }*/
+    public function __construct($login, $mdp)
+    {
+        $this->login = $login;
+        $this->mdp = $mdp;
     }
 
     /**
