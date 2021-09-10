@@ -1,0 +1,29 @@
+<?php
+
+
+class UtilisateurDTO
+{
+    private $login;
+    private $mdp;
+
+
+    public function __construct($unLogin = NULL, $unMdp = NULL){
+        $this->login = $unLogin;
+        $this->mdp = $unMdp;
+    }
+
+    public function getLogin(){
+        return $this->login;
+    }
+
+    public function setLogin($unLogin){
+        $this->login = $unLogin;
+    }
+
+    public function getMdp(){
+        return $this->mdp;
+    }
+    public function setMdp($unMdp){
+        $this->mdp = $unMdp;
+    }
+}
