@@ -20,8 +20,8 @@ if(!isset($_SESSION['identification']) || !$_SESSION['identification']){
 	$formulaireConnexion->ajouterComposantTab();
 	
 	$formulaireConnexion->creerFormulaire();
-	
-	require_once 'vue/vueConnexion.php' ;
+
+	require_once 'vue/vueConnexion.php';
 
 }
 else{

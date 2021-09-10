@@ -27,7 +27,7 @@ class UtilisateurDTO
      * @param $idLigue
      * @param $idClub
      */
-    public function __construct($idUser, $nom, $prenom, $login, $mdp, $statut, $typeUser, $idFonct, $idLigue, $idClub)
+    public function __construct($idUser = NULL, $nom = NULL, $prenom = NULL, $login, $mdp, $statut = NULL, $typeUser = NULL, $idFonct = NULL, $idLigue = NULL, $idClub = NULL)
     {
         $this->idUser = $idUser;
         $this->nom = $nom;
