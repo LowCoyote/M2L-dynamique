@@ -18,6 +18,41 @@ class DBConnex extends PDO{
             die("Impossible de se connecter. " );
         }
     }
+
+    //Fonction qui renvoie un booléen si le login de l'utilisateur a été trouvée 
+    public static function verifLogin($instance, $login){
+        try{
+            $requete = $instance->prepare("select count(*) from Utilisateur where login=:login");
+            $requete->bindParam(':login', $login);
+            $requete->execute();
+            $authentification = $requete->fetch(PDO::FETCH_NUM);
+            if(empty($authentification[0])){
+                return False;
+            }
+            else{
+                return True;
+            }
+        }
+        catch(Exception $ex)
+        {
+            echo($ex -> getMessage());
+        }
+    }
+
+    //Fonction qui renvoie le mot de passe chiffrer de l'utilisateur
+    public static function verifMdp($instance, $login){
+        try{
+            $requete = $instance->prepare("select Password from user where login=:login");
+            $requete->bindParam(':login', $login);
+            $requete->execute();
+            $data = $requete->fetchColumn();
+            return $data;
+        }
+        catch(Exception $ex)
+        {
+            echo($ex -> getMessage());
+        }
+    }
     
 
 }
