@@ -50,11 +50,11 @@ if(!isset($_SESSION['identification']) || !$_SESSION['identification'])
 }
 else
 {
-    $m2lMP->ajouterComposant($m2lMP->creerItemLien("deconnexion", "Deconnexion"));
     if ($_SESSION['identification']->getIdFonct()=="1")
     {
-        $m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "formations"));
+        $m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
     }
+    $m2lMP->ajouterComposant($m2lMP->creerItemLien("deconnexion", "Deconnexion"));
 }
 
 

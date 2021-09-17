@@ -3,10 +3,12 @@
 
 class FormationDTO
 {
+    use Hydrate;
+
     private $idForma;
     private $intitule;
     private $descriptif;
-    private $duree,
+    private $duree;
     private $dateOuvertureInscription;
     private $dateClotureInscription;
     private $effectifMax;
@@ -105,7 +107,8 @@ class FormationDTO
     public function setDateClotureInscription($dateClotureInscription)
     {
         $this->dateClotureInscription = $dateClotureInscription;
-    }/**
+    }
+    /**
      * @return mixed
      */
     public function getEffectifMax()
