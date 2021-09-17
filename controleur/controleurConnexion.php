@@ -3,14 +3,14 @@
 
 if(!isset($_SESSION['identification']) || !$_SESSION['identification']){
 
-	$formulaireConnexion = new Formulaire('post', 'controleur/controleurGestionConnexion.php', 'fConnexion', 'fConnexion');
+	$formulaireConnexion = new Formulaire('post', 'index.php', 'fConnexion', 'fConnexion');
 	
 	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion->creerLabel('Identifiant :'));
-	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion->creerInputTexte('login', 'login', '', 1, 'Entrez votre identifiant...', ''));
+	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion->creerInputTexte('login', 'login', '', 1, 'Entrez votre identifiant', ''));
 	$formulaireConnexion->ajouterComposantTab();
 
 	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion->creerLabel('Mot de Passe :'));
-	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion->creerInputMdp('mdp', 'mdp',  1, 'Entrez votre mot de passe...', ''));
+	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion->creerInputMdp('mdp', 'mdp',  1, 'Entrez votre mot de passe', ''));
 	$formulaireConnexion->ajouterComposantTab();
 
 	$formulaireConnexion->ajouterComposantLigne($formulaireConnexion-> creerInputSubmit('submitConnex', 'submitConnex', 'Valider'));
@@ -21,7 +21,7 @@ if(!isset($_SESSION['identification']) || !$_SESSION['identification']){
 	
 	$formulaireConnexion->creerFormulaire();
 
-	require_once 'vue/vueConnexion.php';
+	require_once 'vue/vueConnexion.php' ;
 
 }
 else{
