@@ -19,9 +19,14 @@ if(isset($_POST['login']) && isset($_POST['mdp']))
         $user->hydrate(UtilisateurDAO::getUtilisateur($_POST['login']));
 
         $_SESSION['identification'] = $user;
-        if(!empty($_SESSION['identification']))
+        if(!empty($_SESSION['identification']) )
         {
-            $_SESSION['m2lMP']="accueil";
+            if ($_SESSION['identification']->getIdFonct()=="1")
+            {
+                $_SESSION['m2lMP']="formations";
+            }
+
+
         }
     }
 	else
@@ -46,6 +51,10 @@ if(!isset($_SESSION['identification']) || !$_SESSION['identification'])
 else
 {
     $m2lMP->ajouterComposant($m2lMP->creerItemLien("deconnexion", "Deconnexion"));
+    if ($_SESSION['identification']->getIdFonct()=="1")
+    {
+        $m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "formations"));
+    }
 }
 
 

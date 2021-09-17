@@ -4,8 +4,6 @@ trait Hydrate{
     {
         foreach ($donnees as $key => $value)
         {
-            print($key);
-            print($value);
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method))
             {
