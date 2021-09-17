@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_GET['m2lMP'])){
 	$_SESSION['m2lMP']= $_GET['m2lMP'];
 }
@@ -10,22 +11,23 @@ else
 }
 
 $messageErreurConnexion = '';
-if(isset($_POST['login']) )
+if(isset($_POST['login']) && isset($_POST['mdp']))
 {
+	if(UtilisateurDAO::verification($_POST['login'], $_POST['mdp']))
+	{
+        $user = new UtilisateurDTO();
+        $user->hydrate(UtilisateurDAO::getUtilisateur($_POST['login']));
 
-    $_utilisateur = new UtilisateurDTO($_POST['login'], $_POST['mdp']);
-    $_SESSION['identification'] = UtilisateurDAO::verification($_utilisateur);
-
-
-    if($_SESSION['identification'])
-    {
-        $_SESSION['m2lMP']="accueil";
+        $_SESSION['identification'] = $user;
+        if(!empty($_SESSION['identification']))
+        {
+            $_SESSION['m2lMP']="accueil";
+        }
     }
-    else
-    {
-        $_SESSION['identification'] = [];
-        $messageErreurConnexion = 'Login ou mot de passe invalide.';
-    }
+	else
+	{
+		$messageErreurConnexion = "Le mot de passe ou le login est incorrect";
+	}
 }
 
 $m2lMP = new Menu("m2lMP");

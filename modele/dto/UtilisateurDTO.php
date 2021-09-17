@@ -3,11 +3,15 @@
 
 class UtilisateurDTO
 {
+<<<<<<< Updated upstream
+=======
+    use Hydrate;
+    //
+>>>>>>> Stashed changes
     private $idUser;
     private $nom;
     private $prenom;
     private $login;
-    private $mdp;
     private $statut;
     private $typeUser;
     private $idFonct;
@@ -27,6 +31,7 @@ class UtilisateurDTO
      * @param $idLigue
      * @param $idClub
      */
+<<<<<<< Updated upstream
     public function __construct($idUser = NULL, $nom = NULL, $prenom = NULL, $login, $mdp, $statut = NULL, $typeUser = NULL, $idFonct = NULL, $idLigue = NULL, $idClub = NULL)
     {
         $this->idUser = $idUser;
@@ -39,6 +44,12 @@ class UtilisateurDTO
         $this->idFonct = $idFonct;
         $this->idLigue = $idLigue;
         $this->idClub = $idClub;
+=======
+
+    public function __construct()
+    {
+        
+>>>>>>> Stashed changes
     }
 
     /**
@@ -103,22 +114,6 @@ class UtilisateurDTO
     public function setLogin($login)
     {
         $this->login = $login;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMdp()
-    {
-        return $this->mdp;
-    }
-
-    /**
-     * @param mixed $mdp
-     */
-    public function setMdp($mdp)
-    {
-        $this->mdp = $mdp;
     }
 
     /**

@@ -2,6 +2,7 @@
 spl_autoload_register('Autoloader::autoloadDto');
 spl_autoload_register('Autoloader::autoloadDao');
 spl_autoload_register('Autoloader::autoloadLib');
+spl_autoload_register('Autoloader::autoloadTrait');
 
 
 class Autoloader{
@@ -29,8 +30,13 @@ class Autoloader{
         }
         
     }
-    
-    
+
+    static function autoloadTrait($class){
+        $file = 'modele/traits/' . lcfirst($class) . '.php';
+        if(is_file($file)&& is_readable($file)){
+            require $file;
+        }
+    }
 }
 
 
