@@ -1,8 +1,10 @@
 <?php
-use Hydrate;
+
 
 class UtilisateurDAO
 {
+    use Hydrate;
+
     public static function verification($username, $mdp){
         $requetePrepa = DBConnex::getInstance()->prepare("select count(*) from Utilisateur where login=:login and mdp =md5(:mdp)");
         $requetePrepa->bindParam(':login', $username);

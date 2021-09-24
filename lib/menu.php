@@ -64,5 +64,56 @@ class Menu{
 		return $menu ;
 	}
 
-	
+    /**
+     * crée le menu à afficher
+     * @param $composantActif (item sélectionné)
+     * @param $nomMenu (nom variable transmise)
+     */
+    public function creerMenu2($composantActif,$nomMenu, $titreListe){
+
+        $titre = "<h3 class='titreListe'>" .  $titreListe . "</h3>";
+
+        $menu = "<ul class = '" .  $this->style . "'>";
+        foreach($this->composants as $composant){
+            if($composant[0] == $composantActif){
+                $menu .= "<li class='actif'>";
+                $menu .=  "<span>" . $composant[1] ."</span>";
+            }
+            else{
+                $menu .= "<li>";
+                $menu .= "<a href='index.php?" . $nomMenu ;
+                $menu .= "=" . $composant[0] . "' >";
+                $menu .= "<span>" . $composant[1] ."</span>";
+                $menu .= "</a>";
+            }
+            $menu .= "</li>";
+        }
+        $menu .= "</ul>";
+        return $titre.$menu ;
+    }
+ /*
+    public function creerMenuEquipe($composantActif){
+        $menu = "<ul class = '" .  $this->style . "'>";
+        foreach($this->composants as $composant){
+            if($composant[0] == $composantActif){
+                $menu .= "<li class='actif'>";
+                $menu .= "<img src='images/" . strtolower($composant[1]) . ".png'>";
+                $menu .=  $composant[1] ;
+            }
+            else{
+                $menu .= "<li>";
+                $menu .= "<a href='index.php?action=afficher" ;
+                $menu .= "&equipe=" . $composant[0] . "' ><img src='images/" . strtolower($composant[1]) . ".png'>";
+                $menu .= $composant[1] ;
+                $menu .= "</a>";
+            }
+            $menu .= "</li>";
+        }
+        $menu .= "</ul>";
+        return $menu ;
+    }*/
+
+
+
+
 }

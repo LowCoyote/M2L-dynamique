@@ -10,11 +10,12 @@ else
 	}
 }
 
+
 $messageErreurConnexion = '';
 if(isset($_POST['login']) && isset($_POST['mdp']))
 {
-	if(UtilisateurDAO::verification($_POST['login'], $_POST['mdp']))
-	{
+    if(UtilisateurDAO::verification($_POST['login'], $_POST['mdp']))
+    {
         $user = new UtilisateurDTO();
         $user->hydrate(UtilisateurDAO::getUtilisateur($_POST['login']));
 
@@ -29,10 +30,10 @@ if(isset($_POST['login']) && isset($_POST['mdp']))
 
         }
     }
-	else
-	{
-		$messageErreurConnexion = "Le mot de passe ou le login est incorrect";
-	}
+    else
+    {
+        $messageErreurConnexion = "Le mot de passe ou le login est incorrect";
+    }
 }
 
 $m2lMP = new Menu("m2lMP");
@@ -50,7 +51,8 @@ if(!isset($_SESSION['identification']) || !$_SESSION['identification'])
 }
 else
 {
-    if ($_SESSION['identification']->getIdFonct()=="1")
+
+    if ($_SESSION['identification']->getIdFonct()=="1" && $_SESSION['identification']->getStatut()=="benevole")
     {
         $m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
     }

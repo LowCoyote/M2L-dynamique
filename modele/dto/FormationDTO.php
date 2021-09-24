@@ -13,6 +13,7 @@ class FormationDTO
     private $dateClotureInscription;
     private $effectifMax;
 
+//    private $lesFormations = [];
 
     /**
      * FormationDTO constructor.
