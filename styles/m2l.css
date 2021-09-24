@@ -14,7 +14,7 @@ html, body {
 .conteneur{
 	margin: 0px;
 	padding: 0px;
-	width: 100%
+	width: 100%;
 	font-size: 0px;
 }
 
@@ -159,7 +159,6 @@ nav.menuPrincipal ul li.actif {
 .texteAccueil h1{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	text-algn: center;
 	text-align: center;
 }
 
@@ -332,3 +331,47 @@ a.anchor {
 	font-weight: bold;
 	color: red;
 }
+
+/****************************************************/
+/*Style pour les bénévoles					        */
+/****************************************************/ 
+
+.contentBenevole{
+	background-color: #f0f0f0;
+	text-align: center;
+	padding-top: 150px;
+}
+
+.benevole{
+	display: inline-block;
+	width: 80%;	
+	font-size: 15px;
+	vertical-align: top;
+}
+
+/****************************************************/
+/*Style pour les salariés					        */
+/****************************************************/ 
+
+.contentSalarie{
+	background-color: #f0f0f0;
+	text-align: center;
+	padding-top: 150px;
+}
+
+.gauche-tab{
+	display: inline-block;	
+	background-color: #fff0f0;
+	width: 80%;
+	vertical-align: top;
+	font-size: 15px;
+	padding-right: 15px;
+}
+
+.droite-tab{
+	display: inline-block;
+	width: 20%;	
+	font-size: 15px;
+	vertical-align: top;
+}
+

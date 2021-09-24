@@ -58,6 +58,25 @@ class Formulaire{
 		$composant .= "/>";
 		return $composant;
 	}
+
+	public function creerInputTexteInvisible($unNom, $unId, $uneValue , $required , $placeholder , $pattern){
+		$composant = "<input type = 'text' name = '" . $unNom . "' id = '" . $unId . "' ";
+		if (!empty($uneValue)){
+			$composant .= "value = '" . $uneValue . "' ";
+		}
+		if (!empty($placeholder)){
+			$composant .= "placeholder = '" . $placeholder . "' ";
+		}
+		if ( $required = 1){
+			$composant .= "required ";
+		}
+		if (!empty($pattern)){
+			$composant .= "pattern = '" . $pattern . "' ";
+		}
+		$composant .= "disabled";
+		$composant .= "/>";
+		return $composant;
+	}
 	
 	
 	public function creerInputMdp($unNom, $unId,  $required , $placeholder , $pattern){
