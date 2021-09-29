@@ -56,11 +56,36 @@ class UtilisateurDAO
     }
 
     public static function getBulletin($idContrat){
+<<<<<<< Updated upstream
         $requetePrepa = DBConnex::getInstance()->prepare("select buletinPDF from Buletin where idContrat=:idContrat");
+=======
+        $requetePrepa = DBConnex::getInstance()->prepare("select bulletinPDF from Bulletin where idContrat=:idContrat");
+>>>>>>> Stashed changes
         $requetePrepa->bindParam(':idContrat', $idContrat);
         $requetePrepa->execute();
         $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
         
         return $result;
     }
+<<<<<<< Updated upstream
+=======
+
+    public static function getIntervenants(){
+        $idFonct = 1;
+        $requetePrepa = DBConnex::getInstance()->prepare("select idUser, nom, prenom, login, statut, typeUser, fonction.libelle, idLigue, idClub from Utilisateur,fonction where fonction.idFonct =:idFonct and fonction.idFonct = utilisateur.idFonct        ");
+        $requetePrepa->bindParam(':idFonct', $idFonct);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $result;
+    }
+
+    public static function getAllnom(){
+        $requetePrepa = DBConnex::getInstance()->prepare("select nom from Utilisateur ");
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $result;
+    }
+>>>>>>> Stashed changes
 }

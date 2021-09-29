@@ -375,3 +375,19 @@ a.anchor {
 	vertical-align: top;
 }
 
+<<<<<<< Updated upstream
+=======
+/****************************************************/
+/*Style pour le responsable 				        */
+/****************************************************/ 
+
+.gauche-ld{
+	display: inline-block;	
+	background-color: #fff0f0;
+	width: 80%;
+	vertical-align: top;
+	font-size: 15px;
+	margin-top: 20px;
+	padding-right: 15px;
+}
+>>>>>>> Stashed changes

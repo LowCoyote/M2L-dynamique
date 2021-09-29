@@ -34,7 +34,11 @@ if(isset($_POST['login']) && isset($_POST['mdp']))
             }
             if($_SESSION['identification']->getIdFonct()=="2")
             {
+<<<<<<< Updated upstream
                 $_SESSION['m2lMP']="services";
+=======
+                $_SESSION['m2lMP']="responsable";
+>>>>>>> Stashed changes
             }
             if($_SESSION['identification']->getIdFonct()=="3")
             {
@@ -82,6 +86,12 @@ else
     {
         $m2lMP->ajouterComposant($m2lMP->creerItemLien("benevole","Benevole"));
     }
+<<<<<<< Updated upstream
+=======
+    elseif($_SESSION['identification']->getIdFonct()=="2"){
+        $m2lMP->ajouterComposant($m2lMP->creerItemLien("responsable","Responsable"));
+    }
+>>>>>>> Stashed changes
     $m2lMP->ajouterComposant($m2lMP->creerItemLien("deconnexion", "Deconnexion"));
 }
 
