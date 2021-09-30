@@ -12,6 +12,55 @@ else
 
 
 $messageErreurConnexion = '';
+
+
+
+if(isset($_POST['submitConnex']) ) {
+
+}
+else if(isset($_POST['submitFInscFormation']) ) {
+
+    $idUser = $_SESSION['identification']->getIdUser();
+
+   // var_dump($idUser);
+    if (isset($_POST['idForma']))
+    {
+        FormationDAO::effectuerDemandeForma($_POST['idForma'], $idUser);
+    }
+    else
+    {
+        echo("<script>alert('nope');</script>");
+    }
+
+}
+else if(isset($_POST['submitFDesiFormation']) ) {
+
+    $idUser = $_SESSION['identification']->getIdUser();
+
+    if (isset($_POST['idForma']))
+    {
+        FormationDAO::supprimerDemandeForma($_POST['idForma'], $idUser);
+    }
+    else
+    {
+        echo("<script>alert('nope');</script>");
+    }
+}
+
+else if(isset($_POST['submitNewForma']) ) {
+
+    if (isset($_POST['intitule'],$_POST['descriptif'],$_POST['duree'],$_POST['dateOuvertureInscription'],$_POST['dateClotureInscription'],$_POST['effectifMax']))
+    {
+        FormationDAO::nouvelleFormation($_POST['intitule'],$_POST['descriptif'],$_POST['duree'],$_POST['dateOuvertureInscription'],$_POST['dateClotureInscription'],$_POST['effectifMax']);
+    }
+    else
+    {
+        echo("<script>alert('nope');</script>");
+    }
+}
+
+
+
 if(isset($_POST['login']) && isset($_POST['mdp']))
 {
     if(UtilisateurDAO::verification($_POST['login'], $_POST['mdp']))
@@ -55,6 +104,7 @@ else
     if ($_SESSION['identification']->getIdFonct()=="1" && $_SESSION['identification']->getStatut()=="benevole")
     {
         $m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
+        $m2lMP->ajouterComposant($m2lMP->creerItemLien("responsablef", "ResponsableF"));
     }
     $m2lMP->ajouterComposant($m2lMP->creerItemLien("deconnexion", "Deconnexion"));
 }

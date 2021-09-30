@@ -3,6 +3,8 @@
 
 class LigueDTO
 {
+    use Hydrate;
+
     private $idLigue;
     private $nomLigue;
     private $site;

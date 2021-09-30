@@ -4,10 +4,10 @@
     </header>
     <main>
         <div class='gauche'>
-            <?php include 'vue/ligues/liguesGauche.php' ;?>
+            <?php include 'vue/formations/responsable/responsableGauche.php' ;?>
         </div>
         <div class='droite'>
-            <?php include 'vue/ligues/liguesDroite.php' ;?>
+            <?php include 'vue/formations/responsable/responsableDroite.php' ;?>
         </div>
     </main>
     <footer>

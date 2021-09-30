@@ -30,10 +30,20 @@ class Formulaire{
 		$this->ligneComposants = array();
 	}
 
+    public function creerBr(){
+        $composant = "<br></br>";
+        return $composant;
+    }
+
 	public function creerLabel($unLabel){
 		$composant = "<label>" . $unLabel . "</label>";
 		return $composant;
 	}
+
+    public function creerID($unNomID,$unID){
+        $composant = "<input id='" . $unNomID . "' name='" . $unNomID . "' type='hidden' value='".$unID."'>";
+        return $composant;
+    }
 
 	public function creerMessage($unMessage){
 		$composant = "<label class='message'>" . $unMessage . "</label>";
@@ -99,6 +109,12 @@ class Formulaire{
 		$composant .= "</select></td></tr>";
 		return $composant;
 	}
+
+    public function creerInputType($unType, $unNom, $unId, $uneValue){
+        $composant = "<input type = '" . $unType . "' name = '" . $unNom . "' id = '" . $unId . "' ";
+        $composant .= "value = '" . $uneValue . "'/> ";
+        return $composant;
+    }
 
 	public function creerInputSubmit($unNom, $unId, $uneValue){
 		$composant = "<input type = 'submit' name = '" . $unNom . "' id = '" . $unId . "' ";
