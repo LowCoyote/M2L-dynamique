@@ -45,11 +45,7 @@ if($_SESSION['identification']->getStatut()=="salarié" && !empty($_SESSION['ide
             foreach($bulletin as $row)
             {
                 $composant .= "<td> <a href ='";
-<<<<<<< Updated upstream
-                $composant .=  $row['buletinPDF'] . "' title='Afficher' target='blank_'> Afficher</a>";
-=======
                 $composant .=  $row['bulletinPDF'] . "' title='Afficher' target='blank_'> Afficher</a>";
->>>>>>> Stashed changes
                 $composant .= "</td>";
             }
 			$composant .= "</tr>";
@@ -67,7 +63,3 @@ else{
 	$_SESSION['m2lMP']="accueil";
 	header('location: index.php');
 }
-<<<<<<< Updated upstream
-?>
-=======
->>>>>>> Stashed changes

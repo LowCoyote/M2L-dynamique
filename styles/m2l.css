@@ -375,8 +375,6 @@ a.anchor {
 	vertical-align: top;
 }
 
-<<<<<<< Updated upstream
-=======
 /****************************************************/
 /*Style pour le responsable 				        */
 /****************************************************/ 
@@ -390,4 +388,27 @@ a.anchor {
 	margin-top: 20px;
 	padding-right: 15px;
 }
->>>>>>> Stashed changes
+
+#idUser{
+	width: 20%;
+}
+
+#typeUser{
+	width: 70%;
+}
+#modif{
+	width: 75px;
+	border-radius: 15px;
+}
+
+.grey{
+	background-color: #E1EAE8;
+}
+
+#removeIdUser{
+	display: none;
+}
+
+.noDisplay{
+	display: none;
+}

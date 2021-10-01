@@ -6,11 +6,10 @@
 	<main>
         <div class="contentSalarie">
             <div class='titre'>Voici vos informations</div>
-                <div class="droite-tab">
+                <div class="gauche-tab">
                     <?php afficherTableauIntervenant(); ?>
                 </div>
-            <div class="gauche-ld" style="margin-top: 17px;">
-                <?php test();?>
+            <div class="droite-tab" style="margin-top: 17px;">
             </div>
         </div>
 	</main>
