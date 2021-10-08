@@ -411,4 +411,12 @@ a.anchor {
 
 .noDisplay{
 	display: none;
+<<<<<<< Updated upstream
+=======
+}
+
+#tablo{
+	margin-top: 20px;
+	margin-left: 15%;
+>>>>>>> Stashed changes
 }

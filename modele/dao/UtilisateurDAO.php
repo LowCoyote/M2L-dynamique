@@ -1,5 +1,8 @@
 <?php
+<<<<<<< Updated upstream
 use Hydrate;
+=======
+>>>>>>> Stashed changes
 
 class UtilisateurDAO
 {
@@ -26,6 +29,7 @@ class UtilisateurDAO
 
         return $result;
     }
+<<<<<<< Updated upstream
 
 
     public static function getUtilisateur($username){
@@ -42,28 +46,54 @@ class UtilisateurDAO
         $requetePrepa->bindParam(':idUser', $idUser);
         $requetePrepa->execute();
         $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+=======
+
+
+    public static function getUtilisateur($username){
+        $requetePrepa = DBConnex::getInstance()->prepare("select idUser, nom, prenom, login, statut, typeUser, idFonct, idLigue, idClub from Utilisateur where login=:login");
+        $requetePrepa->bindParam(':login', $username);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetch(PDO::FETCH_ASSOC);
+>>>>>>> Stashed changes
         
         return $result;
     }
 
+<<<<<<< Updated upstream
     public static function getIdContrat($idUser){
         $requetePrepa = DBConnex::getInstance()->prepare("select idContrat from Contrat where idUser=:idUser");
         $requetePrepa->bindParam(':idUser', $idUser);
         $requetePrepa->execute();
         $result = $requetePrepa->fetch(PDO::FETCH_ASSOC)["idContrat"];
+=======
+    public static function getContrat($idUser){
+        $requetePrepa = DBConnex::getInstance()->prepare("select dateDebut, dateFin, typeContrat, nbHeures from Contrat where idUser=:idUser");
+        $requetePrepa->bindParam(':idUser', $idUser);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+>>>>>>> Stashed changes
         
         return $result;
     }
 
+<<<<<<< Updated upstream
     public static function getBulletin($idContrat){
         $requetePrepa = DBConnex::getInstance()->prepare("select bulletinPDF from Bulletin where idContrat=:idContrat");
         $requetePrepa->bindParam(':idContrat', $idContrat);
         $requetePrepa->execute();
         $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+=======
+    public static function getIdContrat($idUser){
+        $requetePrepa = DBConnex::getInstance()->prepare("select idContrat from Contrat where idUser=:idUser");
+        $requetePrepa->bindParam(':idUser', $idUser);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetch(PDO::FETCH_ASSOC)["idContrat"];
+>>>>>>> Stashed changes
         
         return $result;
     }
 
+<<<<<<< Updated upstream
     public static function getIntervenants(){
         $idFonct = 1;
         $requetePrepa = DBConnex::getInstance()->prepare("select idUser, nom, prenom, login, statut, typeUser, fonction.libelle, idLigue, idClub from Utilisateur,fonction where fonction.idFonct =:idFonct and fonction.idFonct = utilisateur.idFonct        ");
@@ -76,21 +106,34 @@ class UtilisateurDAO
 
     public static function getAllnom(){
         $requetePrepa = DBConnex::getInstance()->prepare("select nom from Utilisateur ");
+=======
+    public static function getBulletin($idContrat){
+        $requetePrepa = DBConnex::getInstance()->prepare("select bulletinPDF from Buletin where idContrat=:idContrat");
+        $requetePrepa->bindParam(':idContrat', $idContrat);
+>>>>>>> Stashed changes
         $requetePrepa->execute();
         $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
         
         return $result;
     }
 
+<<<<<<< Updated upstream
     public static function SuppIntervenants($idUser){
         $requetePrepa = DBConnex::getInstance()->prepare("DELETE FROM Utilisateur where idUser=:idUser");
         $requetePrepa->bindParam(':idUser', $idUser);
+=======
+    public static function getIntervenants(){
+        $idFonct = 1;
+        $requetePrepa = DBConnex::getInstance()->prepare("select Utilisateur.idUser, nom, prenom, login, statut, typeUser, Fonction.libelle, idLigue, idClub , bulletinPDF from Utilisateur,Fonction, Contrat, Buletin where Fonction.idFonct = 1 and Fonction.idFonct = Utilisateur.idFonct and Contrat.idUser = Utilisateur.idUser and Contrat.idContrat = Buletin.idContrat");
+        $requetePrepa->bindParam(':idFonct', $idFonct);
+>>>>>>> Stashed changes
         $requetePrepa->execute();
         $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
         
         return $result;
     }
 
+<<<<<<< Updated upstream
     public static function modifIntervenant($idUser, $nom, $prenom, $login, $statut, $typeUser)
     {
         //idUser nom prenom login statut typeUser
@@ -102,6 +145,10 @@ class UtilisateurDAO
         $requetePrepa->bindParam(':statut', $statut);
         $requetePrepa->bindParam(':typeUser', $typeUser);
 
+=======
+    public static function getAllnom(){
+        $requetePrepa = DBConnex::getInstance()->prepare("select nom from Utilisateur ");
+>>>>>>> Stashed changes
         $requetePrepa->execute();
         $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
         
