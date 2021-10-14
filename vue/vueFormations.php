@@ -4,14 +4,10 @@
     </header>
     <main>
         <div class='gauche'>
-            <?php include 'vue/formations/formationsGauche.php';
-            ?>
+            <?php include 'vue/formations/formationsGauche.php'; ?>
         </div>
         <div class='droite'>
-            <?php include 'vue/formations/formationsDroite.php';
-//            var_dump($_SESSION['demandeInscription']);
-            ?>
-
+            <?php include 'vue/formations/formationsDroite.php'; ?>
         </div>
     </main>
     <footer>

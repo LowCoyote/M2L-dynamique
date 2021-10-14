@@ -89,6 +89,12 @@ class Formulaire{
 		$composant = "<label for='" . $unFor . "'>" . $unLabel . "</label>";
 		return $composant;
 	}
+
+	public function creerTableau(){
+		$composant = "<label for='" . $unFor . "'>" . $unLabel . "</label>";
+		return $composant;
+	}
+
 //<h3 class="titre">Intitule : []</h3>
 	public function creerTitre($uneClasse,  $unLabel){
         $composant = "<h3 class='" . $uneClasse . "'>" . $unLabel . "</h3>";
@@ -98,6 +104,11 @@ class Formulaire{
 ///<p class="corps">Descriptif : </p>
 	public function creerCorp($uneClasse,  $unLabel){
 		$composant = "<p class='" . $uneClasse . "'>" . $unLabel . "</p>";
+		return $composant;
+	}
+
+    public function creerCorpDiv($uneClasse,  $unLabel){
+		$composant = "<div class='" . $uneClasse . "'>" . $unLabel . "</div>";
 		return $composant;
 	}
 
@@ -171,6 +182,18 @@ class Formulaire{
 		$this->formulaireToPrint .= "</form>";
 		return $this->formulaireToPrint ;
 	}
+
+    public function creerArticle2(){
+
+        foreach ($this->tabComposants as $uneLigneComposants){
+            $this->formulaireToPrint .= "<div class = 'article'>";
+            foreach ($uneLigneComposants as $unComposant){
+                $this->formulaireToPrint .= $unComposant ;
+            }
+            $this->formulaireToPrint .= "</div>";
+        }
+        return $this->formulaireToPrint ;
+    }
 
 	public function afficherFormulaire(){
 		echo $this->formulaireToPrint ;

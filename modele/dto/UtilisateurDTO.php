@@ -9,6 +9,7 @@ class UtilisateurDTO
     private $nom;
     private $prenom;
     private $login;
+    private $mdp;
     private $statut;
     private $typeUser;
     private $idFonct;
@@ -16,23 +17,31 @@ class UtilisateurDTO
     private $idClub;
 
     /**
-     * UtilisateurDTO constructor.
      * @param $idUser
      * @param $nom
      * @param $prenom
      * @param $login
-     * @param $mdp
      * @param $statut
      * @param $typeUser
      * @param $idFonct
      * @param $idLigue
      * @param $idClub
      */
-
-    public function __construct()
+    public function __construct($idUser = null, $nom = null, $prenom = null, $login = null, $mdp = null, $statut = null, $typeUser = null, $idFonct = null, $idLigue = null, $idClub = null)
     {
-        
+        $this->idUser = $idUser;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->login = $login;
+        $this->mdp = $mdp;
+        $this->statut = $statut;
+        $this->typeUser = $typeUser;
+        $this->idFonct = $idFonct;
+        $this->idLigue = $idLigue;
+        $this->idClub = $idClub;
     }
+
+
 
     /**
      * @return mixed
@@ -96,6 +105,22 @@ class UtilisateurDTO
     public function setLogin($login)
     {
         $this->login = $login;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+
+    /**
+     * @param mixed|null $mdp
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
     }
 
     /**

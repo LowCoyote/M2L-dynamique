@@ -1,7 +1,6 @@
 <?php
-/*****************************************************************************************************
- * Instancier un objet contenant la liste des Equipes et le conserver dans une variable de session
- *****************************************************************************************************/
+
+// Instancier un objet contenant la liste des Formations et le conserver dans une variable de session
 $_SESSION['listFormations'] = new FormationsDTO(FormationDAO::lesFormations());
 
 if(isset($_GET['MenuFormation'])){
@@ -10,32 +9,38 @@ if(isset($_GET['MenuFormation'])){
 else
 {
     if(!isset($_SESSION['MenuFormation'])){
-        $_SESSION['MenuFormation']="1";
+        $_SESSION['MenuFormation']=null;
     }
 }
 
-// Créer un menu vertical
+$date = date('Y-m-d');
 
 $menuFormation = new menu("menuFormation");
 
-foreach ($_SESSION['listFormations']->getFormations() as $uneFormation){
-    $menuFormation->ajouterComposant($menuFormation->creerItemLien($uneFormation->getIdForma() ,$uneFormation->getIntitule()));
+if ($_SESSION['listFormations']!=null)
+{
+    foreach ($_SESSION['listFormations']->getFormations() as $uneFormation){
+        if ($date >= $uneFormation->getDateOuvertureInscription() && $date <= $uneFormation->getDateClotureInscription())
+        {
+            $menuFormation->ajouterComposant($menuFormation->creerItemLien($uneFormation->getIdForma() ,$uneFormation->getIntitule()));
+        }
+    }
 }
 
 $leMenuFormations = $menuFormation->creerMenu2($_SESSION['MenuFormation'],'MenuFormation' , "Les Formations");
 
+if ($_SESSION['listFormations']->getFormations()!=null)
+{
+    // Récupérer l'équipe sélectionnée
+    $formationActive = $_SESSION['listFormations']->chercheFormation($_SESSION['MenuFormation']);
+}
 
-// Récupérer l'équipe sélectionnée
-$formationActive = $_SESSION['listFormations']->chercheFormation($_SESSION['MenuFormation']);
-//var_dump($formationActive);
-
-//formation
 if (isset($formationActive))
 {
     $idForma= $formationActive->getIdForma();
     $lablIntitule = $formationActive->getIntitule();
     $lablDescriptif= $formationActive->getDescriptif();
-
+    //$duree = $formationActive->getDuree(); //if faut ou pas ????
     $labdateOuvertureInscription= $formationActive->getDateOuvertureInscription();
     $labdateClotureInscription = $formationActive->getDateClotureInscription();
     $lableffectifMax = $formationActive->getEffectifMax();
@@ -51,7 +56,7 @@ if (isset($formationActive))
     {
         $unformulaire = new Formulaire("post", "index.php", "fInscFormation", "form");
 
-        $unformulaire->ajouterComposantLigne($unformulaire->creerID("idForma",$idForma,  ""), "1");
+        $unformulaire->ajouterComposantLigne($unformulaire->creerID("idForma",$idForma,  ""), "WW");
 
         $unformulaire->ajouterComposantLigne($unformulaire->creerTitre("titre",  "Intitule :".$lablIntitule.""),"1");
 
@@ -78,7 +83,6 @@ if (isset($formationActive))
 
         $unformulaire->ajouterComposantLigne($unformulaire->creerTitre("titre",  "Intitule :".$lablIntitule.""),"1");
 
-
         $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$lablDescriptif), "1");
 
 
@@ -98,25 +102,10 @@ if (isset($formationActive))
         $unformulaire->creerArticle();
     }
 
-
 }
-
-
-
-///////to do
-//if (verifierInscrit($formID, ) == 0)
-//{
-//  afficher formulairse avec le STATUS de la demade de formation et le button se desiscrire
-//formulaire desinscription : fDesiFormation
-//}
-//else
-//{
-//afficher formulairse s'inscrire (bouton s'inscrire)
-//formulaire inscription : fInscFormation
-//}
-
-
-
-
+else
+{
+    $message = "Pas de formations disponible !";
+}
 
 require_once 'vue/vueFormations.php';

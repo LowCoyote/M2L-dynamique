@@ -13,8 +13,6 @@ class FormationDTO
     private $dateClotureInscription;
     private $effectifMax;
 
-//    private $lesFormations = [];
-
     /**
      * FormationDTO constructor.
      * @param $idForma
@@ -25,7 +23,7 @@ class FormationDTO
      * @param $dateClotureInscription
      * @param $effectifMax
      */
-    public function __construct($idForma, $intitule, $descriptif, $duree, $dateOuvertureInscription, $dateClotureInscription, $effectifMax)
+    public function __construct($idForma = null, $intitule = null, $descriptif = null, $duree = null, $dateOuvertureInscription = null, $dateClotureInscription = null, $effectifMax = null)
     {
         $this->idForma = $idForma;
         $this->intitule = $intitule;

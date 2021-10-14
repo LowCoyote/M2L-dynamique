@@ -25,7 +25,7 @@ else if(isset($_POST['submitFInscFormation']) ) {
    // var_dump($idUser);
     if (isset($_POST['idForma']))
     {
-        FormationDAO::effectuerDemandeForma($_POST['idForma'], $idUser);
+        EffectueDAO::effectuerDemandeForma($_POST['idForma'], $idUser);
     }
     else
     {
@@ -39,7 +39,7 @@ else if(isset($_POST['submitFDesiFormation']) ) {
 
     if (isset($_POST['idForma']))
     {
-        FormationDAO::supprimerDemandeForma($_POST['idForma'], $idUser);
+        EffectueDAO::supprimerDemandeForma($_POST['idForma'], $idUser);
     }
     else
     {
@@ -52,12 +52,53 @@ else if(isset($_POST['submitNewForma']) ) {
     if (isset($_POST['intitule'],$_POST['descriptif'],$_POST['duree'],$_POST['dateOuvertureInscription'],$_POST['dateClotureInscription'],$_POST['effectifMax']))
     {
         FormationDAO::nouvelleFormation($_POST['intitule'],$_POST['descriptif'],$_POST['duree'],$_POST['dateOuvertureInscription'],$_POST['dateClotureInscription'],$_POST['effectifMax']);
+        $_SESSION['m2lMP']="responsablef";
+        //   $_SESSION['MenuResponsablef']="succes";
+        //  $_SESSION['message']="La nouvelle formation a bien ete ajouter";
+    }
+    else
+    {
+     //  echo("<script>alert('nope');</script>");
+    }
+}
+
+else if(isset($_POST['submitEditForma']) ) {
+
+    if (isset($_POST['intitule'],$_POST['descriptif'],$_POST['duree'],$_POST['dateOuvertureInscription'],$_POST['dateClotureInscription'],$_POST['effectifMax']))
+    {
+
+        FormationDAO::modifierFormation($_POST['idForma'],$_POST['intitule'],$_POST['descriptif'],$_POST['duree'],$_POST['dateOuvertureInscription'],$_POST['dateClotureInscription'],$_POST['effectifMax']);
     }
     else
     {
         echo("<script>alert('nope');</script>");
     }
 }
+
+else if(isset($_POST['submitAccepterDemande']) ) {
+
+    if (isset($_POST['idForma']) && isset($_POST['idUser']))
+    {
+        EffectueDAO::accepterDemandeForma($_POST['idForma'], $_POST['idUser']);
+    }
+    else
+    {
+        echo("<script>alert('nope');</script>");
+    }
+
+}
+else if(isset($_POST['submitRefuserDemande']) ) {
+
+    if (isset($_POST['idForma']) && isset($_POST['idUser']))
+    {
+        EffectueDAO::refuserDemandeForma($_POST['idForma'], $_POST['idUser']);
+    }
+    else
+    {
+        echo("<script>alert('nope');</script>");
+    }
+}
+
 
 
 
