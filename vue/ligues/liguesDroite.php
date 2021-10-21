@@ -1,7 +1,6 @@
 <div class="articles">
-<!--    <div class="article">-->
         <?php
-         //  $unformulaire->afficherFormulaire();
+                $unformulaire->afficherFormulaire();
+                $tabClubsaffilié->afficherTableauCorp();
         ?>
-<!--    </div>-->
 </div>

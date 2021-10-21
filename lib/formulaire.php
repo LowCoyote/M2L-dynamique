@@ -15,6 +15,29 @@ class Formulaire{
 		$this->nom = $unNom;
 		$this->style = $unStyle;
 	}
+//Debut Pierre
+    public function creerInputTexteInvisible($unNom, $unId, $uneValue , $required , $placeholder , $pattern){
+        $composant = "<input type = 'text' name = '" . $unNom . "' id = '" . $unId . "' ";
+        if (!empty($uneValue)){
+            $composant .= "value = '" . $uneValue . "' ";
+        }
+        if (!empty($placeholder)){
+            $composant .= "placeholder = '" . $placeholder . "' ";
+        }
+        if ( $required == 1){
+            $composant .= "required ";
+        }
+        if (!empty($pattern)){
+            $composant .= "pattern = '" . $pattern . "' ";
+        }
+        $composant .= "disabled";
+        $composant .= "/>";
+        return $composant;
+    }
+
+
+
+//Fin Pierre
 
 	public function concactComposants($unComposant , $autreComposant ){
 		$unComposant .=  $autreComposant;
@@ -30,9 +53,22 @@ class Formulaire{
 		$this->ligneComposants = array();
 	}
 
+    public function corpsDebut(){
+        $composant = "<div class='corps'>";
+        return $composant;
+    }
+
+    public function divFin(){
+        $composant = "</div>";
+        return $composant;
+    }
+
     public function creerBr(){
         $composant = "<br></br>";
         return $composant;
+    }
+    public function afficher($value){
+        return $value;
     }
 
 	public function creerLabel($unLabel){
@@ -49,6 +85,11 @@ class Formulaire{
 		$composant = "<label class='message'>" . $unMessage . "</label>";
 		return $composant;
 	}
+
+	public function creerTextarea($unNom, $unID, $unPlaceholder, $rows, $cols, $uneValeur){
+        $composant = "<textarea type='text' name='" . $unNom . "' id='" . $unID. "' placeholder='" . $unPlaceholder . "' rows='" . $rows . "' cols='" . $cols . "' required>" . $uneValeur. "</textarea>";
+        return $composant;
+    }
 
 
 	public function creerInputTexte($unNom, $unId, $uneValue , $required , $placeholder , $pattern){
@@ -194,6 +235,7 @@ class Formulaire{
         }
         return $this->formulaireToPrint ;
     }
+
 
 	public function afficherFormulaire(){
 		echo $this->formulaireToPrint ;

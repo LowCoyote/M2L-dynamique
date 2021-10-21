@@ -40,9 +40,11 @@ if (isset($formationActive))
     $idForma= $formationActive->getIdForma();
     $lablIntitule = $formationActive->getIntitule();
     $lablDescriptif= $formationActive->getDescriptif();
-    //$duree = $formationActive->getDuree(); //if faut ou pas ????
+    $duree = $formationActive->getDuree(); //if faut ou pas ????
     $labdateOuvertureInscription= $formationActive->getDateOuvertureInscription();
     $labdateClotureInscription = $formationActive->getDateClotureInscription();
+    $dateDebut= $formationActive->getDateDebut();
+    $dateFin = $formationActive->getDateFin();
     $lableffectifMax = $formationActive->getEffectifMax();
 
 
@@ -62,11 +64,28 @@ if (isset($formationActive))
 
 
         $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$lablDescriptif), "1");
-
+/*
 
         $extra = "formation entre : ".$labdateOuvertureInscription." et ".$labdateClotureInscription." effectif max : ".$lableffectifMax."";
 
         $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$extra), "1");
+*/
+
+        $data = array (
+            array("Duree : ",$duree,'heurs'),
+            array("Effectif Max :",$lableffectifMax,'personnes'),
+            //Ouverture //Cloture
+            array("-",'Ouverture','Cloture'),
+            array("Inscription :",$labdateOuvertureInscription,$labdateClotureInscription),
+            //Debut //Fin
+            array("-",'Debut','Fin'),
+            array("Formation :",$dateDebut, $dateFin),
+            array("Etat inscription :",'PAS INSCRIT','-')
+        );
+
+        $tabDetailsForma = new Tableau(1,$data);
+        $tabDetailsForma->setTitreTab("Details Formation");
+
 
         $unformulaire->ajouterComposantLigne($unformulaire-> creerInputSubmit2('submitFInscFormation', 'submitFInscFormation', "S&rsquo;inscrie a cétte formation"));
         $unformulaire->ajouterComposantTab();
@@ -74,7 +93,7 @@ if (isset($formationActive))
 
         $unformulaire->creerArticle();
 
-    }
+    } // formulaire d'inscription
     else
     {
         $unformulaire = new Formulaire("post", "index.php", "fDesiFormation", "form");
@@ -85,24 +104,39 @@ if (isset($formationActive))
 
         $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$lablDescriptif), "1");
 
-
+/*
         $extra = "formation entre : ".$labdateOuvertureInscription." et ".$labdateClotureInscription." effectif max : ".$lableffectifMax."";
 
         $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$extra), "1");
+*/
 
-
-        $extra2 = "Etat inscription : ".$_SESSION['demandeInscription']['EtatInscription']
+      /*  $extra2 = "Etat inscription : ".$_SESSION['demandeInscription']['EtatInscription']
             . " | Date Inscription : " . $_SESSION['demandeInscription']['DateInscription'];
-        $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$extra2), "1");
+        $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$extra2), "1");*/
+
+        $data = array (
+            array("Duree : ",$duree,'heurs'),
+            array("Effectif Max :",$lableffectifMax,'personnes'),
+            //Ouverture //Cloture
+            array("-",'Ouverture','Cloture'),
+            array("Inscription :",$labdateOuvertureInscription,$labdateClotureInscription),
+            //Debut //Fin
+            array("-",'Debut','Fin'),
+            array("Formation :",$dateDebut, $dateFin),
+            array("Etat inscription :",$_SESSION['demandeInscription']['EtatInscription'],'-')
+        );
+
+        $tabDetailsForma = new Tableau(1,$data);
+        $tabDetailsForma->setTitreTab("Details Formation");
 
         $unformulaire->ajouterComposantLigne($unformulaire-> creerInputSubmit2('submitFDesiFormation', 'submitFDesiFormation', " Annuler l&rsquo;inscription "));
         $unformulaire->ajouterComposantTab();
 
 
         $unformulaire->creerArticle();
-    }
+    } // formulaire d'anulation de l'inscription
 
-}
+} // formation active
 else
 {
     $message = "Pas de formations disponible !";

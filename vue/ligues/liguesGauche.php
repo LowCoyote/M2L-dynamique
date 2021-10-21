@@ -1,5 +1,5 @@
 <nav class="sidenav">
     <?php
-    echo $leMenuLigus;
+        echo $leMenuLigues;
     ?>
 </nav>

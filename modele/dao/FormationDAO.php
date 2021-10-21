@@ -10,7 +10,7 @@ class FormationDAO
 
         if(!empty($liste)){
             foreach($liste as $formation){
-                $uneFormation = new FormationDTO(null,null,null,null,null,null,null);
+                $uneFormation = new FormationDTO();
                 $uneFormation->hydrate($formation);
                 $result[] = $uneFormation;
             }
@@ -35,14 +35,16 @@ class FormationDAO
         return $result;
     }
 
-    public static function nouvelleFormation($intitule, $descriptif, $duree, $dateOuvertureInscription, $dateClotureInscription, $effectifMax) {
+    public static function nouvelleFormation($intitule, $descriptif, $duree, $dateOuvertureInscription, $dateClotureInscription, $dateDebut, $dateFin, $effectifMax) {
 
-        $requetePrepa = DBConnex::getInstance()->prepare("INSERT INTO `formation` (`idForma`, `intitule`, `descriptif`, `duree`, `dateOuvertureInscription`, `dateClotureInscription`, `effectifMax`) VALUES (NULL, :intitule, :descriptif, :duree, :dateOuvertureInscription, :dateClotureInscription, :effectifMax);");
+        $requetePrepa = DBConnex::getInstance()->prepare("INSERT INTO `formation` (`idForma`, `intitule`, `descriptif`, `duree`, `dateOuvertureInscription`, `dateClotureInscription`,  `dateDebut`, `dateFin`,`effectifMax`) VALUES (NULL, :intitule, :descriptif, :duree, :dateOuvertureInscription, :dateClotureInscription,  :dateDebut, :dateFin, :effectifMax);");
         $requetePrepa->bindParam( ":intitule", $intitule);
         $requetePrepa->bindParam( ":descriptif", $descriptif);
         $requetePrepa->bindParam( ":duree", $duree);
         $requetePrepa->bindParam( ":dateOuvertureInscription", $dateOuvertureInscription);
         $requetePrepa->bindParam( ":dateClotureInscription", $dateClotureInscription);
+        $requetePrepa->bindParam( ":dateDebut", $dateDebut);
+        $requetePrepa->bindParam( ":dateFin", $dateFin);
         $requetePrepa->bindParam( ":effectifMax", $effectifMax);
         $requetePrepa->execute();
 

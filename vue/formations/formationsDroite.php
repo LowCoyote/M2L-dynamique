@@ -3,6 +3,7 @@
         if (!isset($message))
         {
             $unformulaire->afficherFormulaire();
+            $tabDetailsForma->afficherTableauCorp();
         }
         else
         {

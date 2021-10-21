@@ -7,21 +7,21 @@ class LiguesDTO
 
     public function __construct($array){
         if (is_array($array)) {
-            $this->$ligues = $array;
+            $this->ligues = $array;
         }
     }
 
     public function getLigues(){
-        return $this->$ligues;
+        return $this->ligues;
     }
 
     public function chercheLigue($unNumLigue){
         $i = 0;
-        while ($unNumLigue != $this->$ligues[$i]->getIdLigue() && $i < count($this->$ligues)-1){
+        while ($unNumLigue != $this->ligues[$i]->getIdLigue() && $i < count($this->ligues)-1){
             $i++;
         }
-        if ($unNumLigue == $this->$ligues[$i]->getIdLigue()){
-            return $this->$ligues[$i];
+        if ($unNumLigue == $this->ligues[$i]->getIdLigue()){
+            return $this->ligues[$i];
         }
     }
 

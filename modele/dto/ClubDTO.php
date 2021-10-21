@@ -3,6 +3,8 @@
 
 class ClubDTO
 {
+    use hydrate;
+
     private $idClub;
     private $nomClub;
     private $adresseClub;

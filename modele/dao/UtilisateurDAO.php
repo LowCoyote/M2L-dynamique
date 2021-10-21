@@ -21,44 +21,6 @@ class UtilisateurDAO
         return $result;
     }
 
-    public static function verificationUtilisateur(UtilisateurDTO $utilisateur){
-
-        $requetePrepa = DBConnex::getInstance()->prepare("select mail from Utilisateur where
-        mail = :mail and  mdp = md5(:mdp)");
-
-        $mail = $utilisateur->getLogin();
-        $mdp =   $utilisateur->getMdp();
-
-
-        $requetePrepa->bindParam( ":mail",$mail);
-        $requetePrepa->bindParam( ":mdp" ,  $mdp);
-
-        $requetePrepa->execute();
-
-        $mail = $requetePrepa->fetch();
-
-        return $mail[0];
-    }
-
-    public static function verificationUtilisateur2(UtilisateurDTO $utilisateur){
-
-        $requetePrepa = DBConnex::getInstance()->prepare("select utilisateur from `utilisateur` where 
-        login = :login and  mdp = md5(:mdp)");
-
-
-        $login = $utilisateur->getLogin();
-        $mdp =   $utilisateur->getMdp();
-
-        $requetePrepa->bindParam( ":login",$login);
-        $requetePrepa->bindParam( ":mdp" ,  $mdp);
-
-        $requetePrepa->execute();
-
-        $login = $requetePrepa->fetch();
-        return $login[0];
-    }
-
-
     public static function verification($username, $mdp){
         $requetePrepa = DBConnex::getInstance()->prepare("select count(*) from Utilisateur where login=:login and mdp =md5(:mdp)");
         $requetePrepa->bindParam(':login', $username);
@@ -72,13 +34,17 @@ class UtilisateurDAO
             return True;
         }
     }
+
+
+    //Debut Pierre
+
     public static function getStatus($username){
         $result = [];
         $requetePrepa = DBConnex::getInstance()->prepare("select statut from Utilisateur where login=:login");
         $requetePrepa->bindParam(':login', $username);
         $requetePrepa->execute();
-   
-        $result = $requetePrepa->fetch(); 
+
+        $result = $requetePrepa->fetch();
 
         return $result;
     }
@@ -89,7 +55,47 @@ class UtilisateurDAO
         $requetePrepa->bindParam(':login', $username);
         $requetePrepa->execute();
         $result = $requetePrepa->fetch(PDO::FETCH_ASSOC);
-        
+
         return $result;
     }
+
+
+    public static function getContrat($idUser){
+        $requetePrepa = DBConnex::getInstance()->prepare("select dateDebut, dateFin, typeContrat, nbHeures from Contrat where idUser=:idUser");
+        $requetePrepa->bindParam(':idUser', $idUser);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function getIdContrat($idUser){
+        $requetePrepa = DBConnex::getInstance()->prepare("select idContrat from Contrat where idUser=:idUser");
+        $requetePrepa->bindParam(':idUser', $idUser);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetch(PDO::FETCH_ASSOC)["idContrat"];
+
+        return $result;
+    }
+
+    public static function getBulletin($idContrat){
+        $requetePrepa = DBConnex::getInstance()->prepare("select bulletinPDF from Buletin where idContrat=:idContrat");
+        $requetePrepa->bindParam(':idContrat', $idContrat);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function getIntervenants(){
+        $idFonct = 1;
+        $requetePrepa = DBConnex::getInstance()->prepare("select Utilisateur.idUser, nom, prenom, login, statut, typeUser, Fonction.libelle, idLigue, idClub from Utilisateur,Fonction where Fonction.idFonct = 1 and Fonction.idFonct = Utilisateur.idFonct");
+        $requetePrepa->bindParam(':idFonct', $idFonct);
+        $requetePrepa->execute();
+        $result = $requetePrepa->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+    //Fin Pierre
+
 }

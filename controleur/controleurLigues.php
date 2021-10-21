@@ -3,6 +3,7 @@
  * Instancier un objet contenant la liste des Equipes et le conserver dans une variable de session
  *****************************************************************************************************/
 $_SESSION['listLigues'] = new LiguesDTO(LigueDAO::lesLigues());
+$_SESSION['listClubs'] = new ClubsDTO(ClubDAO::lesClubs());
 
 if(isset($_GET['MenuLigue'])){
     $_SESSION['MenuLigue']= $_GET['MenuLigue'];
@@ -16,66 +17,66 @@ else
 
 // Créer un menu vertical
 
-$menuLigue = new menu("gg"); //sidenav
+$menuLigue = new menu("gg"); 
 
 foreach ($_SESSION['listLigues']->getLigues() as $uneLigue){
     $menuLigue->ajouterComposant($menuLigue->creerItemLien($uneLigue->getIdLigue() ,$uneLigue->getNomLigue()));
 }
 
-$leMenuLigus = $menuLigue->creerMenu2($_SESSION['MenuLigue'],'MenuLigue' , "Les Ligues");
+$leMenuLigues = $menuLigue->creerMenu2($_SESSION['MenuLigue'],'MenuLigue' , "Les Ligues");
 
+// Récupérer la ligue sélectionnée et le club affilié
 
-// Récupérer l'équipe sélectionnée
-$formationActive = $_SESSION['listLigues']->chercheLigue($_SESSION['MenuLigue']);
-//var_dump($formationActive);
-/*
-//formation
-$lablID = $formationActive->getIdForma();
-$lablIntitule = $formationActive->getIntitule();
-$lablDescriptif= $formationActive->getDescriptif();
+$ligueActive = $_SESSION['listLigues']->chercheLigue($_SESSION['MenuLigue']);
+$clubActif = $_SESSION['listClubs'];
 
-$labdateOuvertureInscription= $formationActive->getDateOuvertureInscription();
-$labdateClotureInscription = $formationActive->getDateClotureInscription();
-$lableffectifMax = $formationActive->getEffectifMax();
-
-
-$idUser = $_SESSION['identification']->getIdUser();*/
-
-
-///////to do
-//if (verifierInscrit($formID, ) == 0)
-//{
-//  afficher formulairse avec le STATUS de la demade de formation et le button se desiscrire
-//formulaire desinscription : fDesiFormation
-//}
-//else
-//{
-//afficher formulairse s'inscrire (bouton s'inscrire)
-//formulaire inscription : fInscFormation
-//}
+// Ligue, clubs
+$lablID = $ligueActive->getIdLigue();
+$lablIntitule = $ligueActive->getNomLigue();
+$lablSite= $ligueActive->getSite();
+$lablDescriptif= $ligueActive->getDescriptif();
 
 
 
+$unformulaire = new Formulaire("post", "index.php", "formLigues", "form");
 
-/*
-$unformulaire = new Formulaire("post", "index.php", "fInscFormation", "form");
+$unformulaire->ajouterComposantLigne($unformulaire->creerID("anchor",$lablID,  ""), "1");
 
-//$unformulaire->ajouterComposantLigne($unformulaire->creerID("anchor",$lablID,  ""), "1");
+$unformulaire->ajouterComposantLigne($unformulaire->creerTitre("titre",$lablIntitule),"1");
 
-$unformulaire->ajouterComposantLigne($unformulaire->creerTitre("titre",  "Intitule :".$lablIntitule.""),"1");
-
+$unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps","Site internet : ".$lablSite), "1");
 
 $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$lablDescriptif), "1");
 
+$data1 = array ();
+foreach($clubActif->getClubs() as $club)
+{
+    
+    $lablIDClub = $club->getIdClub();
+    $lablNomClub = $club->getNomClub();
+    $lablAdrClub = $club->getAdresseClub();
+    $lablIDLigue = $club->getIdLigue();
 
-$extra = "formation entre : ".$labdateOuvertureInscription." et ".$labdateClotureInscription." effectif max : ".$lableffectifMax."";
 
-$unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps",$extra), "1");
+   if($lablID==$lablIDLigue){
 
-$unformulaire->ajouterComposantLigne($unformulaire-> creerInputSubmit2('submitConnex', 'submitConnex', "S&rsquo;inscrie a cétte formation"));
+      //  $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps","Nom du club affilié : ".$lablNomClub), "1");
+       // $unformulaire->ajouterComposantLigne($unformulaire->creerCorp("corps","Adresse : ".$lablAdrClub), "1");
+      // $data2 = array($lablNomClub,$lablAdrClub);
+       array_push($data1,array($lablNomClub,$lablAdrClub));
+   }
+
+
+}
+
+$tabClubsaffilié = new Tableau(1,$data1);
+$tabClubsaffilié->setTitreTab("Clubs affilié : ");
+$tabClubsaffilié->setTitreCol(array("Nom du club",'Adresse'));
+
+
+
 $unformulaire->ajouterComposantTab();
 
-
-$unformulaire->creerArticle();*/
+$unformulaire->creerArticle();
 
 require_once 'vue/vueLigues.php' ;

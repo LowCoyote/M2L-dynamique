@@ -24,49 +24,205 @@ if (isset($_GET['MenuResponsablef'])) {
 $menuFormation = new menu("menuFormation");
 
 $menuFormation->ajouterComposant($menuFormation->creerItemLien("ajouter", "Nouvelle formations"));
-$menuFormation->ajouterComposant($menuFormation->creerItemLien("formations", "Gerer les formations"));
-$menuFormation->ajouterComposant($menuFormation->creerItemLien("demandes", "Gerer les demandes"));
+$menuFormation->ajouterComposant($menuFormation->creerItemLien("gererFormations", "Gerer les formations"));
+$menuFormation->ajouterComposant($menuFormation->creerItemLien("gererDemandes", "Gerer les demandes"));
 
 $leMenuResponsablef = $menuFormation->creerMenu2($_SESSION['MenuResponsablef'], 'MenuResponsablef', "Les Formations");
 
 
 $option = $_SESSION['MenuResponsablef'];
 if ($option == "ajouter") {
-    $unformulaire = new Formulaire("post", "index.php", "fNewForma", "fNewForma");
-    $unformulaire->ajouterComposantLigne($unformulaire->creerTitre("titre", "Ajouter une formations"), "1");
+    $addForm = new Formulaire("post", "index.php", "fNewForma", "fNewForma");
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerLabel('intitule :'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputTexte('intitule', 'intitule', '', 1, 'Entrez un intitule', ''));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerTitre("titre", "Ajouter une formations"), "1");
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerLabel('descriptif :'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputTexte('descriptif', 'descriptif', '', 1, 'Entrez une description', ''));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerBr());
+    $addForm->ajouterComposantLigne($addForm->corpsDebut());
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerLabel('duree :'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputType('number', 'duree', 'duree', '', 'Entrez une duree en heur'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('intitule','Nom de la formation :'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputTexte('intitule', 'intitule', '', 1, 'Entrez un intitule', ''));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerLabel('dateOuvertureInscription :'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputType('date', 'dateOuvertureInscription', 'dateOuvertureInscription', ""));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('descriptif','Description formation :'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerTextarea('descriptif', 'descriptif', 'Entrez une description', 6, 80, ''));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerLabel('dateClotureInscription :'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputType('date', 'dateClotureInscription', 'dateClotureInscription', ""));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('duree','La duree : (en heure)'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputType('number', 'duree', 'duree', '', 'Entrez une duree en heure'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerLabel('effectifMax :'));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputTexte('effectifMax', 'effectifMax', '', 1, 'Entrez un effectif Max', ''));
-    $unformulaire->ajouterComposantLigne($unformulaire->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('dateOuvertureInscription','Date d&rsquo;Ouverture de l&rsquo;Inscription:'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputType('date', 'dateOuvertureInscription', 'dateOuvertureInscription', ""));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('dateClotureInscription','Date de Cloture de l&rsquo;Inscription :'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputType('date', 'dateClotureInscription', 'dateClotureInscription', ""));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('dateDebut','Date de Debut de l&rsquo;Inscription  :'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputType('date', 'dateDebut', 'dateDebut', ""));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('dateFin','Date de Fin de l&rsquo;Inscription :'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputType('date', 'dateFin', 'dateFin', ""));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+
+    $addForm->ajouterComposantLigne($addForm->creerLabelFor('effectifMax','L&rsquo;effectif Maximum :'));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+    $addForm->ajouterComposantLigne($addForm->creerInputTexte('effectifMax', 'effectifMax', '', 1, 'Entrez un effectif Max', ''));
+    $addForm->ajouterComposantLigne($addForm->creerBr());
+
+    $addForm->ajouterComposantLigne($addForm->divFin());
+
+    $addForm->ajouterComposantLigne($addForm->creerInputSubmit2('submitNewForma', 'submitNewForma', " Creer la formation "));
+    $addForm->ajouterComposantTab();
+
+    $addForm->creerArticle();
+} // creation du formulaire pour ajouter une nouvelle formation
+else if ($option == "modifier") {
+    $optID = $_SESSION['formaID'];
+    $formaToEdit = $_SESSION['listFormations']->chercheFormation($optID);
+
+    $idForma = $formaToEdit->getIdForma();
+    $intitule = $formaToEdit->getIntitule();
+    $descriptif = $formaToEdit->getDescriptif();
+    $duree = $formaToEdit->getDuree();
+    $dateOuvertureInscription = $formaToEdit->getDateOuvertureInscription();
+    $dateClotureInscription = $formaToEdit->getDateClotureInscription();
+    $dateDebut = $formaToEdit->getDateDebut();
+    $dateFin = $formaToEdit->getDateFin();
+    $effectifMax = $formaToEdit->getEffectifMax();
 
 
-    $unformulaire->ajouterComposantLigne($unformulaire->creerInputSubmit('submitNewForma', 'submitNewForma', " Creer la formation "));
+    $editForm = new Formulaire("post", "index.php", "fEditForma", "fEditForma");
+    $editForm->ajouterComposantLigne($editForm->creerTitre("titre", "Modifier la formation : " . $intitule), "1");
+
+    $editForm->ajouterComposantLigne($editForm->corpsDebut());
+
+    $editForm->ajouterComposantLigne($editForm->creerID("idForma", $idForma, ""), "WW");
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('intitule','Nom de la formation :'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputTexte('intitule', 'intitule', $intitule, 1, 'Entrez un intitule', ''));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('descriptif','Description formation :'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerTextarea('descriptif', 'descriptif', 'Entrez une description', 6, 80, $descriptif));
+
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('duree','La duree : (en heure)'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputType('number', 'duree', 'duree', $duree, 'Entrez une duree en heure'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('dateOuvertureInscription','Date d&rsquo;Ouverture de l&rsquo;Inscription:'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputType('date', 'dateOuvertureInscription', 'dateOuvertureInscription', $dateOuvertureInscription));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('dateClotureInscription','Date de Cloture de l&rsquo;Inscription :'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputType('date', 'dateClotureInscription', 'dateClotureInscription', $dateClotureInscription));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
 
 
-    $unformulaire->ajouterComposantTab();
-    $unformulaire->creerArticle();
-}
-else if ($option == "formations") {
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('dateDebut','Date de Debut de l&rsquo;Inscription  :'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputType('date', 'dateDebut', 'dateDebut', $dateDebut));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('dateFin','Date de Fin de l&rsquo;Inscription :'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputType('date', 'dateFin', 'dateFin', $dateFin));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+
+    $editForm->ajouterComposantLigne($editForm->creerLabelFor('effectifMax','L&rsquo;effectif Maximum :'));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+    $editForm->ajouterComposantLigne($editForm->creerInputTexte('effectifMax', 'effectifMax', $effectifMax, 1, 'Entrez un effectif Max', ''));
+    $editForm->ajouterComposantLigne($editForm->creerBr());
+
+    $editForm->ajouterComposantLigne($editForm->creerInputSubmit('submitEditForma', 'submitEditForma', " Modifier la formation "));
+
+
+    $editForm->ajouterComposantTab();
+    $editForm->creerArticle();
+
+
+} // creation du formulaire pour modifier une formation
+else if ($option == "afficher") {
+
+    $optID = $_SESSION['formaID'];
+    $formaToEdit = $_SESSION['listFormations']->chercheFormation($optID);
+    if (isset($formaToEdit))
+    {
+        $idForma = $formaToEdit->getIdForma();
+        $intitule = $formaToEdit->getIntitule();
+        $descriptif = $formaToEdit->getDescriptif();
+        $duree = $formaToEdit->getDuree();
+        $dateOuvertureInscription = $formaToEdit->getDateOuvertureInscription();
+        $dateClotureInscription = $formaToEdit->getDateClotureInscription();
+        $dateDebut = $formaToEdit->getDateDebut();
+        $dateFin = $formaToEdit->getDateFin();
+        $effectifMax = $formaToEdit->getEffectifMax();
+
+        $viewForm = new Formulaire("post", "index.php", "fInscFormation", "form");
+
+        $viewForm->ajouterComposantLigne($viewForm->creerID("idForma", $idForma, ""), "WW");
+
+        $viewForm->ajouterComposantLigne($viewForm->creerTitre("titre", "Intitule :" . $intitule . ""), "1");
+
+
+        $viewForm->ajouterComposantLigne($viewForm->creerCorp("corps", $descriptif), "1");
+
+
+
+        $data = array (
+            array("Duree : ",$duree,'heurs'),
+            array("Effectif Max :",$effectifMax,'personnes'),
+            //Ouverture //Cloture
+            array("-",'Ouverture','Cloture'),
+            array("Inscription :",$dateOuvertureInscription,$dateClotureInscription),
+            //Debut //Fin
+            array("-",'Debut','Fin'),
+            array("Formation :",$dateFin,$dateFin)
+        );
+
+        $tabDetailsForma = new Tableau(1,$data);
+        $tabDetailsForma->setTitreTab("Details Formation");
+
+
+        $viewForm->ajouterComposantTab();
+
+
+        $viewForm->creerArticle2();
+    }
+
+} // creation du formulaire static pour afficher une formations dont l'id est passer en parametre
+else if ($option == "supprimer") {
+    $optID = null;
+    $optID = $_SESSION['formaID'];
+    $formaToEdit = $_SESSION['listFormations']->chercheFormation($optID);
+    if(isset($formaToEdit)) // verifie si la formation existe
+    {
+        //supprime la formation passer en parametre
+        FormationDAO::supprimerFormation($optID);
+        $message = "La formation a bien ete supprimer";
+    }
+    else
+    {
+        $message = "La formation n'a pas ete trouver !!";
+    }
+} // suppresion d'une formations dont l'id est passer en parametre
+else if ($option == "gererFormations") {
     $gestForma = new Formulaire("post", "index.php", "fConnexion", "fConnexion");
     $gestForma->ajouterComposantLigne($gestForma->creerTitre("titre", "Gerer les formations "), "1");
     $gestForma->ajouterComposantTab();
@@ -78,32 +234,36 @@ else if ($option == "formations") {
             <table class='tab'>
                         <thead>
                             <tr>
-                                <td>intitule</td>
-                                <td>descriptif</td>
-                                <td>duree</td>
-                                <td>dateOuvertureInscription</td>
-                                <td>dateClotureInscription</td>
-                                <td>effectifMax</td>
-                            <td>Details</td>
-                            <td>Modifier</td>
-                            <td>Supprimer</td></tr>
+                                <td>Nom</td>
+                                <td>Description</td>
+                                <td>Duree</td>
+                                <td>Date Ouverture Insc</td>
+                                <td>Date Cloture Insc</td> 
+                                <td>Date Debut</td>
+                                <td>Date Fin</td>
+                                <td>Max</td>
+                                <td>Details</td>
+                                <td>Modifier</td>
+                                <td>Supprimer</td></tr>
                         </thead>";
 
         foreach ($_SESSION['listFormations']->getFormations() as $uneFormation) {
             $composant .= '<tr class="pair" >';
 
             $composant .= "<td>" . $uneFormation->getIntitule() . "</td>";
-            $composant .= "<td>" . $uneFormation->getDescriptif() . "</td>";
+            $composant .= "<td>" . substr($uneFormation->getDescriptif(), 0, 20) . "</td>"; // seulement les 20 caractere de la description pour ne pas deformer le tableau
             $composant .= "<td>" . $uneFormation->getDuree() . "</td>";
             $composant .= "<td>" . $uneFormation->getDateOuvertureInscription() . "</td>";
             $composant .= "<td>" . $uneFormation->getDateClotureInscription() . "</td>";
+            $composant .= "<td>" . $uneFormation->getDateDebut() . "</td>";
+            $composant .= "<td>" . $uneFormation->getDateFin() . "</td>";
             $composant .= "<td>" . $uneFormation->getEffectifMax() . "</td>";
 
             $id = $uneFormation->getIdForma();
 
 
             // $formModifier = '<a href="?MenuResponsablef=modifier&id='.$id.'">Modifier</a>';
-            $formModifier = '<a href="?MenuResponsablef=formation&id=' . $id . '"><input type="button" value="Voir la formation"/></a>';
+            $formModifier = '<a href="?MenuResponsablef=afficher&id=' . $id . '"><input type="button" value="Voir la formation"/></a>';
             $composant .= "<td>" . $formModifier . "</td>";
 
             // $formModifier = '<a href="?MenuResponsablef=modifier&id='.$id.'">Modifier</a>';
@@ -128,18 +288,20 @@ else if ($option == "formations") {
     $gestDemande->creerArticle();
 
 
-}
-else if ($option == "demandes") {
+} // creation du tableau CRUD des formations
+else if ($option == "gererDemandes") {
 
     function creerFormulaireDemande($uneFormation, $listeDemandesEffectues, $listeUtilisateurs)
     {
 
-        $idForma = $uneFormation->getIdForma();
+//        $idForma = $uneFormation->getIdForma();
         $lablIntitule = $uneFormation->getIntitule();
         $lablDescriptif = $uneFormation->getDescriptif();
-        $labdateOuvertureInscription = $uneFormation->getIdForma();
-        $labdateClotureInscription = $uneFormation->getIdForma();
-        $lableffectifMax = $uneFormation->getIdForma();
+//        $labdateOuvertureInscription = $uneFormation->getIdForma();
+//        $labdateClotureInscription = $uneFormation->getIdForma();
+        $dateDebut = $uneFormation->getDateDebut();
+//        $dateFin = $uneFormation->getDateFin();
+//        $lableffectifMax = $uneFormation->getIdForma();
         $idForma = $uneFormation->getIdForma();
 
         $formForma = new Formulaire("post", "index.php", "demandeEffectues", "form");
@@ -157,8 +319,9 @@ else if ($option == "demandes") {
                             <tr>
                                 <td>Nom</td>
                                 <td>Prenom</td>
-                                <td>EtatInscription</td>
-                                <td>DateInscription</td>		
+                                <td>Etat Inscription</td>
+                                <td>Date Inscription</td>		
+                                <td>Date Debut Formation</td>		
                                 <td>Accepter</td>
                                 <td>Reufser</td>
                             </tr>
@@ -175,6 +338,7 @@ else if ($option == "demandes") {
 
                 $composant .= "<td>" . $uneDemandesEffectue->getEtatInscription() . "</td>";
                 $composant .= "<td>" . $uneDemandesEffectue->getDateInscription() . "</td>";
+                $composant .= "<td>" . $dateDebut . "</td>";
 
 
                 if ($uneFormation->getEffectifMax() <= $count) {
@@ -221,99 +385,7 @@ else if ($option == "demandes") {
         $message = 'Aucune demande pour aucune formation disponible !!';
     }
 
-}
-else if ($option == "modifier") {
-    $optID = $_SESSION['formaID'];
-    $formaToEdit = $_SESSION['listFormations']->chercheFormation($optID);
-
-    $idForma = $formaToEdit->getIdForma();
-    $intitule = $formaToEdit->getIntitule();
-    $descriptif = $formaToEdit->getDescriptif();
-    $duree = $formaToEdit->getDuree();
-    $dateOuvertureInscription = $formaToEdit->getDateOuvertureInscription();
-    $dateClotureInscription = $formaToEdit->getDateClotureInscription();
-    $effectifMax = $formaToEdit->getEffectifMax();
-
-
-    $editForm = new Formulaire("post", "index.php", "fEditForma", "fEditForma");
-    $editForm->ajouterComposantLigne($editForm->creerTitre("titre", "Modifier la formation : " . $intitule), "1");
-
-    $editForm->ajouterComposantLigne($editForm->creerID("idForma", $idForma, ""), "WW");
-
-    $editForm->ajouterComposantLigne($editForm->creerLabel('intitule :'));
-    $editForm->ajouterComposantLigne($editForm->creerInputTexte('intitule', 'intitule', $intitule, 1, 'Entrez un intitule', ''));
-    $editForm->ajouterComposantLigne($editForm->creerBr());
-
-    $editForm->ajouterComposantLigne($editForm->creerLabel('descriptif :'));
-    $editForm->ajouterComposantLigne($editForm->creerInputTexte('descriptif', 'descriptif', $descriptif, 1, 'Entrez une description', ''));
-    $editForm->ajouterComposantLigne($editForm->creerBr());
-
-    $editForm->ajouterComposantLigne($editForm->creerLabel('duree :'));
-    $editForm->ajouterComposantLigne($editForm->creerInputType('number', 'duree', 'duree', $duree, 'Entrez une duree en heur'));
-    $editForm->ajouterComposantLigne($editForm->creerBr());
-
-    $editForm->ajouterComposantLigne($editForm->creerLabel('dateOuvertureInscription :'));
-    $editForm->ajouterComposantLigne($editForm->creerInputType('date', 'dateOuvertureInscription', 'dateOuvertureInscription', $dateOuvertureInscription));
-    $editForm->ajouterComposantLigne($editForm->creerBr());
-
-    $editForm->ajouterComposantLigne($editForm->creerLabel('dateClotureInscription :'));
-    $editForm->ajouterComposantLigne($editForm->creerInputType('date', 'dateClotureInscription', 'dateClotureInscription', $dateClotureInscription));
-    $editForm->ajouterComposantLigne($editForm->creerBr());
-
-    $editForm->ajouterComposantLigne($editForm->creerLabel('effectifMax :'));
-    $editForm->ajouterComposantLigne($editForm->creerInputTexte('effectifMax', 'effectifMax', $effectifMax, 1, 'Entrez un effectif Max', ''));
-    $editForm->ajouterComposantLigne($editForm->creerBr());
-
-
-    $editForm->ajouterComposantLigne($editForm->creerInputSubmit('submitEditForma', 'submitEditForma', " Modifier la formation "));
-
-
-    $editForm->ajouterComposantTab();
-    $editForm->creerArticle();
-
-
-}
-else if ($option == "formation") {
-
-    $optID = $_SESSION['formaID'];
-    $formaToEdit = $_SESSION['listFormations']->chercheFormation($optID);
-
-    $idForma = $formaToEdit->getIdForma();
-    $intitule = $formaToEdit->getIntitule();
-    $descriptif = $formaToEdit->getDescriptif();
-    $duree = $formaToEdit->getDuree();
-    $dateOuvertureInscription = $formaToEdit->getDateOuvertureInscription();
-    $dateClotureInscription = $formaToEdit->getDateClotureInscription();
-    $effectifMax = $formaToEdit->getEffectifMax();
-
-    $viewForm = new Formulaire("post", "index.php", "fInscFormation", "form");
-
-    $viewForm->ajouterComposantLigne($viewForm->creerID("idForma", $idForma, ""), "WW");
-
-    $viewForm->ajouterComposantLigne($viewForm->creerTitre("titre", "Intitule :" . $intitule . ""), "1");
-
-
-    $viewForm->ajouterComposantLigne($viewForm->creerCorp("corps", $descriptif), "1");
-
-
-    $extra1 = "Formation de " . $duree . " heures | Effectif max est de : " . $effectifMax . "";
-    $extra2 = "Commence le : " . $dateOuvertureInscription . " et se finit le : " . $dateClotureInscription . "";
-
-    $viewForm->ajouterComposantLigne($viewForm->creerCorp("corps", $extra1 . "<br>" . $extra2), "1");
-
-
-    $viewForm->ajouterComposantTab();
-
-
-    $viewForm->creerArticle2();
-
-}
-else if ($option == "supprimer") {
-    $optID = null;
-    $optID = $_SESSION['formaID'];
-    FormationDAO::supprimerFormation($optID);
-    $message = "La formation a bien ete supprimer";
-}
+} // creation du tableau de gestion des demandes pour les formations
 
 
 require_once 'vue/vueResponsablef.php';

@@ -1,11 +1,12 @@
 @charset "ISO-8859-1";
+
 *{
 	margin: 0;
 	padding: 0;
 }
 
 html, body {
-  font-family: sans-serif;
+	font-family: sans-serif;
 }
 
 /****************************************************/
@@ -14,7 +15,7 @@ html, body {
 .conteneur{
 	margin: 0px;
 	padding: 0px;
-	width: 100%
+	width: 100%;
 	font-size: 0px;
 }
 
@@ -22,12 +23,12 @@ html, body {
 /*styles pour le header                             */
 /****************************************************/
 header {
-  height: 200px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
+	height: 200px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 10;
 }
 
 /****************************************************/
@@ -38,8 +39,8 @@ main {
 	padding: 0px;
 	min-height: 600px;
 	background-color: #f0f0f0;
- 	font-size: 0px;
- 	margin-top: 200px;
+	font-size: 0px;
+	margin-top: 200px;
 }
 
 
@@ -49,7 +50,7 @@ main {
 /*styles pour la zone gauche de la zone centrale de la page           */
 /**********************************************************************/
 .gauche {
-	display: inline-block;	
+	display: inline-block;
 	background-color: #fff0f0;
 	width: 20%;
 	vertical-align: top;
@@ -61,7 +62,7 @@ main {
 /**********************************************************************/
 .droite {
 	display: inline-block;
-	width: 80%;	
+	width: 80%;
 	font-size: 15px;
 	vertical-align: top;
 }
@@ -98,8 +99,8 @@ footer p{
 /*styles pour le bandeau                            */
 /****************************************************/
 .bandeau {
-  height: 80%;
-  background: linear-gradient(rgba(0, 0, 150, 0.5), rgba(0, 0, 200, 0.6)), url("../images/header2.jpg");
+	height: 80%;
+	background: linear-gradient(rgba(0, 0, 150, 0.5), rgba(0, 0, 200, 0.6)), url("../images/header2.jpg");
 }
 
 
@@ -116,8 +117,8 @@ nav.menuPrincipal ul {
 	display:  inline;
 	list-style: none;
 	padding: 0px;
- 	margin: 0px;
-	font-family: Helvetica; 
+	margin: 0px;
+	font-family: Helvetica;
 }
 
 nav.menuPrincipal ul li {
@@ -130,24 +131,24 @@ nav.menuPrincipal ul li {
 }
 
 nav.menuPrincipal ul li a {
-  text-decoration: none;
-  color: white; 
+	text-decoration: none;
+	color: white;
 }
 
 nav.menuPrincipal ul li a:hover {
-  color: grey;
+	color: grey;
 }
 
 nav.menuPrincipal ul li.actif {
-  	background-color: ivory;
-  	color: black;
-  	padding: 10px;
+	background-color: ivory;
+	color: black;
+	padding: 10px;
 }
 
 
 /****************************************************/
 /*styles pour le page d'accueil                     */
-/****************************************************/ 
+/****************************************************/
 .texteAccueil {
 	width: 70%;
 	margin-left: auto;
@@ -159,7 +160,6 @@ nav.menuPrincipal ul li.actif {
 .texteAccueil h1{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	text-algn: center;
 	text-align: center;
 }
 
@@ -180,52 +180,52 @@ nav.menuPrincipal ul li.actif {
 
 /****************************************************/
 /*styles pour la zone navigation gauche             */
-/****************************************************/ 
+/****************************************************/
 
 a.anchor {
-    display: block;
-    position: relative;
-    top: -200px;
-    visibility: hidden;
+	display: block;
+	position: relative;
+	top: -200px;
+	visibility: hidden;
 }
 
 .sidenav{
 	position: fixed;
- 	top: 200px;
- 	left: 0px;
+	top: 200px;
+	left: 0px;
 }
 
 .sidenav .titreListe{
-	color: black; 
+	color: black;
 	padding: 30px;
 	font-weight: bold;
- 	font-size: 22px; 
+	font-size: 22px;
 }
- 
+
 .sidenav ul{
-  list-style: none;
-  padding-left: 40px;
-  font-size: 16px;
-  line-height: 35px;
+	list-style: none;
+	padding-left: 40px;
+	font-size: 16px;
+	line-height: 35px;
 }
 
 .sidenav li a {
-  text-decoration: none;
-  color: grey; 
+	text-decoration: none;
+	color: grey;
 }
 
 .sidenav li a:hover {
-  color: blue;
+	color: blue;
 }
 
 /****************************************************/
 /*styles pour les rubriques de la zone droite       */
-/****************************************************/ 
+/****************************************************/
 .articles{
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-bottom: 150px;		
+	padding-bottom: 150px;
 }
 
 .article .titre{
@@ -234,12 +234,12 @@ a.anchor {
 }
 
 .article .corps{
-	background-color: #b2ebf2; 
+	background-color: #b2ebf2;
 	text-align: justify;
 	padding: 15px;
 }
 
- .article .corps .col1{
+.article .corps .col1{
 	display: inline-block;
 	width: 28%;
 	vertical-align: middle;
@@ -257,7 +257,7 @@ a.anchor {
 
 /****************************************************/
 /*styles pour les tableaux de la zone droite        */
-/****************************************************/ 
+/****************************************************/
 
 .article .corps .tab{
 	width: 100%;
@@ -277,8 +277,8 @@ a.anchor {
 
 .contentConnexion{
 	background-color: #f0f0f0;
- 	text-align: center;
- 	padding-top: 150px;
+	text-align: center;
+	padding-top: 150px;
 }
 
 .connexion {
@@ -309,7 +309,7 @@ a.anchor {
 	text-align: right;
 	padding-right: 10px;
 	font-weight: bold;
-	
+
 }
 
 .connexion .ligne input{
@@ -331,4 +331,137 @@ a.anchor {
 	text-align: center;
 	font-weight: bold;
 	color: red;
+}
+
+/****************************************************/
+/*Style pour les bénévoles					        */
+/****************************************************/
+
+.contentBenevole{
+	background-color: #f0f0f0;
+	text-align: center;
+	padding-top: 150px;
+}
+
+.benevole{
+	display: inline-block;
+	width: 80%;
+	font-size: 15px;
+	vertical-align: top;
+}
+
+/****************************************************/
+/*Style pour les salariés					        */
+/****************************************************/
+
+.contentSalarie{
+	background-color: #f0f0f0;
+	text-align: center;
+	padding-top: 150px;
+}
+
+.gauche-tab{
+	display: inline-block;
+	background-color: #fff0f0;
+	width: 80%;
+	vertical-align: top;
+	font-size: 15px;
+	padding-right: 15px;
+}
+
+.droite-tab{
+	display: inline-block;
+	width: 20%;
+	font-size: 15px;
+	vertical-align: top;
+}
+
+/****************************************************/
+/*Style pour le responsable 				        */
+/****************************************************/
+
+.contentSalarieResp{
+	background: transparent;
+	text-align: center;
+	padding-top: 150px;
+	font-weight: 100;
+	margin: 0;
+}
+
+.test{
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+}
+
+.gauche-tab{
+	background: transparent;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding-bottom: 15%;
+}
+
+.table{
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.gauche-ld{
+	display: inline-block;
+	background-color: #fff0f0;
+	width: 80%;
+	vertical-align: top;
+	font-size: 15px;
+	margin-top: 20px;
+	padding-right: 15px;
+}
+
+#idUser{
+	width: 20%;
+}
+
+#typeUser{
+	width: 70%;
+}
+#modif{
+	width: 75px;
+	border-radius: 15px;
+}
+
+.grey{
+	background-color: #E1EAE8;
+}
+
+#removeIdUser{
+	display: none;
+}
+
+.noDisplay{
+	display: none;
+}
+
+#tablo{
+	margin-top: 20px;
+	margin-left: 15%;
+}
+
+/* valentin
+tab1
+ */
+
+.article .corps .tab1 {
+	width: 30%;
+	font-size: 0.8em;
+	border: 1px solid blue;
+	text-align: center;
+}
+
+.article .corps .tab1 thead{
+	background-color: skyblue;
+}
+
+.article .corps .tab1 .pair{
+	background-color: white;
 }
