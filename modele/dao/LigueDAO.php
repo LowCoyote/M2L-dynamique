@@ -21,8 +21,6 @@ class LigueDAO
     public static function modifierLigue($idLigue, $nom, $site, $descriptif) {
 
         $requetePrepa = DBConnex::getInstance()->prepare("UPDATE `ligue` SET `nomLigue` = :nomLigue, `site` = :site, `descriptif` = :descriptif WHERE `formation`.`idLigue` = :idLigue;");
-
-        $requetePrepa = DBConnex::getInstance()->prepare("INSERT INTO `ligue` (`idLigue`, `nomLigue`, `site`, `descriptif`) VALUES (AUTO, :nomLigue, :site, :descriptif);");
         $requetePrepa->bindParam( ":idLigue", $idLigue);
         $requetePrepa->bindParam( ":nomLigue", $nom);
         $requetePrepa->bindParam( ":site", $site);
@@ -33,7 +31,7 @@ class LigueDAO
 
     public static function nouvelleLigue($nom, $site, $descriptif) {
 
-        $requetePrepa = DBConnex::getInstance()->prepare("INSERT INTO `ligue` (`idLigue`, `nomLigue`, `site`, `descriptif`) VALUES (AUTO, :nomLigue, :site, :descriptif);");
+        $requetePrepa = DBConnex::getInstance()->prepare("INSERT INTO `ligue` (`idLigue`, `nomLigue`, `site`, `descriptif`) VALUES (NULL, :nomLigue, :site, :descriptif);");
         $requetePrepa->bindParam( ":nomLigue", $nom);
         $requetePrepa->bindParam( ":site", $site);
         $requetePrepa->bindParam( ":descriptif", $descriptif);

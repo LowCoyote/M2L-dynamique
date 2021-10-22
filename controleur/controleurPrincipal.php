@@ -145,6 +145,8 @@ else if(isset($_POST['submitRefuserDemande']) ) {
 
 //Fin Valentin
 
+
+//Debut Antoine
 else if(isset($_POST['submitNewLigue']) ) {
 
     if (isset($_POST['nom'],$_POST['site'],$_POST['descriptif']))
@@ -173,8 +175,6 @@ else if(isset($_POST['submitEditLigue']) ) {
     }
 } // modification d'une Ligue
 
-//Debut Antoine
-//...
 //Fin Antoine
 
 $m2lMP = new Menu("m2lMP");
