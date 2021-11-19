@@ -13,6 +13,8 @@ else
 
 $messageErreurConnexion = '';
 
+//$_SESSION['identification'] = null;
+
 
 if(isset($_POST['submitConnex']) ) {
     if(isset($_POST['login']) && isset($_POST['mdp']))
